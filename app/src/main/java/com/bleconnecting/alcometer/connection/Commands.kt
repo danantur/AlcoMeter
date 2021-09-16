@@ -100,7 +100,7 @@ class Commands {
     }
 
     /**
-     * Describes app commands to device.
+     * Describes app commands to device. (те, что помечены как не использованные, на тестах не работали, CURRENT_DATE_AND_TIME надо ещё проверить)
      */
     enum class AppDeviceCommand(val code: String)
     {
@@ -118,15 +118,33 @@ class Commands {
      */
     enum class DeviceCommand(val code: String)
     {
+        /**
+         * Подготовка к записи данных
+         */
         SENSOR_STABILIZATION("T03"),
         POWER_OFF("T04"),
         BATTERY_ERROR("T05"),
+        /**
+         * Устройство готово к работе, ожидается использование
+         */
         WAIT_FOR_BLOW("T06"),
+        /**
+         * Записываются данные с сенсора
+         */
         TRIGGER("T07"),
         FLOW_ERROR("T08"),
         SENSOR_ERROR("T09"),
+        /**
+         * Данные анализируются
+         */
         ANALYZING("T10"),
+        /**
+         * Данные проанализированны, пересылаются в приложение
+         */
         TEST_RESULT("T11"),
+        /**
+         * Отключение режима bluetooth
+         */
         STAND_BY_MODE_FOR_SWITCH("T12"),
         TEMPERATURE_ERROR("T17"),
         PRESSURE_SENSOR_ERROR("T18"),

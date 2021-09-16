@@ -15,10 +15,7 @@ import com.bleconnecting.alcometer.connection.Client
 import com.bleconnecting.alcometer.connection.Commands
 import com.polidea.rxandroidble2.RxBleConnection
 import com.polidea.rxandroidble2.exceptions.BleException
-import kotlinx.datetime.*
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 
 class DeviceActivity : AppCompatActivity(),
@@ -104,9 +101,7 @@ Client.StateCallback{
             )
         }
 
-        syncDateTimeBtn.setOnClickListener {
-            makeToast("TODO")
-        }
+        syncDateTimeBtn.setOnClickListener { }
 
         recycler = findViewById(R.id.logRecycler)
 
@@ -147,7 +142,12 @@ Client.StateCallback{
         }
     }
 
+    override fun onSendSuccess(cmd: Commands.AppDeviceCommand, data: ByteArray) {
+        // событие, возникающее при успешном записывании команды
+    }
+
     override fun onData(cmd: Commands.DeviceResponse, data: ArrayList<Any>, bat: Int) {
+        // событие получения данных с устройства
         when (cmd) {
             is Commands.DeviceResponse.Device ->
                 addLog(cmd.command.name, "data = $data, bat = $bat")

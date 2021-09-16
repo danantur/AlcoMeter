@@ -40,10 +40,11 @@ class Client(ctx: Context, private val stateCallback: StateCallback,
 
     @SuppressLint("CheckResult")
     fun sendCommand(cmd: Commands.AppDeviceCommand, data: ByteArray) {
+        // Отправка команд, на вход идёт
         if (connection != null) {
             connection!!.writeCharacteristic(Commands.writeUuid, Commands.packCommand(cmd, data))
                 .subscribe({
-
+                    connectionCallback!!.onSendSuccess(cmd, data)
                 }, {
                     connectionCallback!!.onConnectionError(it as BleException)
                 })
@@ -183,6 +184,7 @@ class Client(ctx: Context, private val stateCallback: StateCallback,
     interface ConnectionCallback {
         fun onConnectionError(error: BleException)
         fun onConnectionState(state: RxBleConnection.RxBleConnectionState)
+        fun onSendSuccess(cmd: Commands.AppDeviceCommand, data: ByteArray)
         fun onData(cmd: Commands.DeviceResponse, data: ArrayList<Any>, bat: Int)
     }
 }
