@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AlcoMeter</string>
+    <array name="commands">
+        <item>CHECK_DEVICE_INFORMATION</item>
+        <item>CONTROL_BUZZER_VOLUME</item>
+        <item>START_TO_TEST</item>
+        <item>CURRENT_DATE_AND_TIME</item>
+        <item>MOVE_TO_STANDBY_MODE_OF_APP</item>
+    </array>
+    <string name="connect">Подключиться</string>
+    <string name="device_info">Версия</string>
+    <string name="buzz_volume">Уровень звука</string>
+    <string name="start_measure">Начать измерения</string>
+    <string name="sync_date_time">Синхронизация времени</string>
+    <string name="disconnect">Отключиться</string>
+</resources>
