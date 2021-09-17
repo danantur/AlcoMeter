@@ -16,6 +16,8 @@ import com.bleconnecting.alcometer.connection.Commands
 import com.polidea.rxandroidble2.RxBleConnection
 import com.polidea.rxandroidble2.exceptions.BleException
 import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 class DeviceActivity : AppCompatActivity(),
@@ -101,7 +103,13 @@ Client.StateCallback{
             )
         }
 
-        syncDateTimeBtn.setOnClickListener { }
+        syncDateTimeBtn.setOnClickListener {
+            val dt = SimpleDateFormat("yyMMddhhmmss", Locale.US).format(Date())
+            alcoClient.sendCommand(
+                Commands.AppDeviceCommand.CURRENT_DATE_AND_TIME,
+                dt.toByteArray()
+            )
+        }
 
         recycler = findViewById(R.id.logRecycler)
 

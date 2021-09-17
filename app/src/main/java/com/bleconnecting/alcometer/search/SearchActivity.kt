@@ -20,6 +20,9 @@ import com.bleconnecting.alcometer.communicate.DeviceActivity
 import com.bleconnecting.alcometer.R
 import com.bleconnecting.alcometer.connection.Client
 import com.polidea.rxandroidble2.RxBleDevice
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchActivity : AppCompatActivity(), Client.StateCallback,
     Client.SearchCallback {
@@ -63,6 +66,7 @@ class SearchActivity : AppCompatActivity(), Client.StateCallback,
     }
 
     private fun initLayout() {
+
         setContentView(R.layout.activity_search)
 
         recycler = findViewById(R.id.recyclerView)

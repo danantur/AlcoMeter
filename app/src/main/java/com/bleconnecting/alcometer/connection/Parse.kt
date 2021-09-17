@@ -5,6 +5,8 @@ import kotlinx.datetime.LocalDate
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Parse {
 
@@ -62,13 +64,13 @@ class Parse {
                                 )
                                 else -> arrayListOf()
                             }
-                            DeviceAppCommand.CURRENT_DATE_AND_TIME -> arrayListOf(kotlinx.datetime.LocalDateTime(
-                                data.decodeToString(0, 2).toInt(),
-                                data.decodeToString(2, 2).toInt(),
-                                data.decodeToString(4, 2).toInt(),
-                                data.decodeToString(6, 2).toInt(),
-                                data.decodeToString(8, 2).toInt(),
-                                data.decodeToString(10, 2).toInt()
+                            DeviceAppCommand.CURRENT_DATE_AND_TIME -> arrayListOf(Date(
+                                data.decodeToString(0, 1).toInt(),
+                                data.decodeToString(2, 3).toInt(),
+                                data.decodeToString(4, 5).toInt(),
+                                data.decodeToString(6, 7).toInt(),
+                                data.decodeToString(8, 9).toInt(),
+                                data.decodeToString(10, 11).toInt()
                             ))
                             DeviceAppCommand.START_TO_TEST,
                             DeviceAppCommand.MOVE_TO_STANDBY_MODE_OF_APP -> arrayListOf("OK")

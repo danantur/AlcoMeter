@@ -4,9 +4,7 @@ import android.util.Log
 import java.util.*
 import kotlin.experimental.inv
 
-import com.bleconnecting.alcometer.connection.Parse.*
 import java.lang.Exception
-import kotlin.collections.ArrayList
 
 class Commands {
 
