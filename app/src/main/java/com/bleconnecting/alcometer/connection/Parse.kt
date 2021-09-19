@@ -1,10 +1,6 @@
 package com.bleconnecting.alcometer.connection
 
 import com.bleconnecting.alcometer.connection.Commands.*
-import kotlinx.datetime.LocalDate
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -30,7 +26,7 @@ class Parse {
                             DeviceCommand.TEST_RESULT -> arrayListOf(
                                 data[0].toInt(),
                                 data[2].toInt(),
-                                data.decodeToString(4, 5),
+                                data.decodeToString(4, 8),
                                 data[10].toInt()
                             )
                             DeviceCommand.ANALYZING -> arrayListOf("ANALYZING")
@@ -43,23 +39,23 @@ class Parse {
                             DeviceAppCommand.CONTROL_BUZZER_VOLUME -> parseInt(data, 1)
                             DeviceAppCommand.CHECK_USAGE_COUNT_OF_DEVICE -> arrayListOf(
                                 data[0].toInt(),
-                                data.decodeToString(2, 6).toInt()
+                                data.decodeToString(2, 7).toInt()
                             )
                             DeviceAppCommand.CHECK_CALIBRATION_INFO -> when (data.count { bt -> bt == '#'.code.toByte() }) {
-                                3 -> arrayListOf(kotlinx.datetime.LocalDateTime(
-                                    data.decodeToString(0, 4).toInt(),
-                                    data.decodeToString(5, 2).toInt(),
-                                    data.decodeToString(8, 2).toInt(),
+                                3 -> arrayListOf(Date(
+                                    data.decodeToString(0, 3).toInt(),
+                                    data.decodeToString(5, 6).toInt(),
+                                    data.decodeToString(8, 9).toInt(),
                                     0, 0, 0
                                 ))
                                 0 -> arrayListOf(
                                     data.decodeToString(0, 6),
-                                    data.decodeToString(8, 3),
-                                    data.decodeToString(11, 3)
+                                    data.decodeToString(8, 10),
+                                    data.decodeToString(11, 13)
                                 )
                                 6 -> arrayListOf(
                                     data[0].toInt(),
-                                    data.decodeToString(2, 3),
+                                    data.decodeToString(2, 4),
                                     data[6].toInt()
                                 )
                                 else -> arrayListOf()
